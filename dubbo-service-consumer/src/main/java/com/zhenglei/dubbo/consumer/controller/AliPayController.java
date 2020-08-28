@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/alipay")
 public class AliPayController {
@@ -19,7 +22,7 @@ public class AliPayController {
 
     /*阿里支付*/
     @ResponseBody
-    @PostMapping(value = "alipay")
+    @PostMapping(value = "pay")
     public String alipay(String out_trade_no, String subject, String total_amount, String body) throws AlipayApiException {
         PCAlipayBean alipayBean = new PCAlipayBean();
         alipayBean.setBody(body);
@@ -28,9 +31,24 @@ public class AliPayController {
         alipayBean.setSubject(subject);
         return payService.aliPay(alipayBean);
     }
+
     @GetMapping(value = "index")
-    public String index()  {
+    public String index() {
         return "/index";
+    }
+
+
+    @ResponseBody
+    @GetMapping(value = "checkAlipay")
+    public String checkAlipay(String outTradeNo) {
+        return payService.checkAlipay(outTradeNo);
+    }
+
+
+    @ResponseBody
+    @GetMapping(value = "async")
+    public String async(HttpServletRequest request) {
+        return payService.async(request);
     }
 
 }

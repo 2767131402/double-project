@@ -43,7 +43,6 @@ public class PropertiesConfig implements ApplicationListener {
             Properties prop = config.getObject();
             //循环遍历所有得键值对并且存入集合
             for (String key : prop.stringPropertyNames()) {
-                System.out.println(key+"_"+prop.get(key));
                 map.put(key, (String) prop.get(key));
             }
         } catch (Exception e) {
