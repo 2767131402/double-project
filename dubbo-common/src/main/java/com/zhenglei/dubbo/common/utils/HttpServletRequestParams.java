@@ -2,7 +2,7 @@ package com.zhenglei.dubbo.common.utils;
 
 import cn.hutool.core.io.IoUtil;
 import com.alibaba.fastjson.JSONObject;
-import org.apache.dubbo.common.utils.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
